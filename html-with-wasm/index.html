@@ -17,8 +17,8 @@
         };
 
         // file wasm not recognize with live server .... MIME not recognize
+        //> const url = 'simple.wasm';
         // will try with express :)
-        //const url = 'simple.wasm';
         const url = 'http://localhost:3000/static/simple.wasm';
 
         WebAssembly.instantiateStreaming(fetch(url), importObject)
