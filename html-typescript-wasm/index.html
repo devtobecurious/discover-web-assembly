@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        importObject = {
+            env: {
+                abort: () => console.log("Abort!")
+            }
+        };
+
+        // file wasm not recognize with live server .... MIME not recognize
+        //> const url = 'simple.wasm';
+        // will try with express :)
+        const url = 'http://localhost:3000/static/optimized.wasm';
+
+        WebAssembly.instantiateStreaming(fetch(url), importObject)
+            .then(obj => {
+                const value = obj.instance.exports.add(1, 2);
+                console.log('value :', value);
+            });
+    </script>
+</body>
+
+</html>
